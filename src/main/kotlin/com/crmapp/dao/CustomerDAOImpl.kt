@@ -8,12 +8,12 @@ import javax.persistence.Query
 
 
 @Repository
-class CustomerDAOImpl : CustomerDAO {
+open class CustomerDAOImpl : CustomerDAO {
 
     @Autowired
     lateinit var sessionFactory : SessionFactory
 
-    override fun getCustomers(): List<Customer>? {
+    open override fun getCustomers(): List<Customer>? {
         val session = sessionFactory.currentSession
 
         val query = session.createQuery("from Customer order by lastName", Customer::class.java)
@@ -23,19 +23,19 @@ class CustomerDAOImpl : CustomerDAO {
         return listOfCustomers
     }
 
-    override fun saveCustomer(theCustomer: Customer) {
+    open override fun saveCustomer(theCustomer: Customer) {
         val session = sessionFactory.currentSession
 
         session.saveOrUpdate(theCustomer)
     }
 
-    override fun getCustomer(theId: Long): Customer {
+    open override fun getCustomer(theId: Long): Customer {
         val session = sessionFactory.currentSession
 
         return session.get(Customer::class.java, theId)
     }
 
-    override fun deleteCustomer(theId: Long) {
+    open override fun deleteCustomer(theId: Long) {
         val session = sessionFactory.currentSession
 
         val query = session.createQuery("delete from Customer where id = :theCustomerId")
@@ -43,7 +43,7 @@ class CustomerDAOImpl : CustomerDAO {
         query.executeUpdate()
     }
 
-    override fun searchCustomers(theSearchName: String?): List<Customer?>? {
+    open override fun searchCustomers(theSearchName: String?): List<Customer?>? {
         val currentSession = sessionFactory.currentSession
 
         var theQuery: Query? = null

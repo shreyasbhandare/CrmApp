@@ -8,7 +8,7 @@ import javax.transaction.Transactional
 
 
 @Service
-class CustomerServiceImpl : CustomerService {
+open class CustomerServiceImpl : CustomerService {
     @Autowired
     lateinit var customerDAO: CustomerDAO
 
