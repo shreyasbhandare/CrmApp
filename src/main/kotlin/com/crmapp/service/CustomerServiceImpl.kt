@@ -23,7 +23,7 @@ open class CustomerServiceImpl : CustomerService {
     }
 
     @Transactional
-    override fun getCustomer(theId: Long): Customer {
+    override fun getCustomer(theId: Long): Customer? {
         return customerDAO.getCustomer(theId)
     }
 

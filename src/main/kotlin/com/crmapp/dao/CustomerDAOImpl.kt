@@ -29,7 +29,7 @@ open class CustomerDAOImpl : CustomerDAO {
         session.saveOrUpdate(theCustomer)
     }
 
-    open override fun getCustomer(theId: Long): Customer {
+    open override fun getCustomer(theId: Long): Customer? {
         val session = sessionFactory.currentSession
 
         return session.get(Customer::class.java, theId)
